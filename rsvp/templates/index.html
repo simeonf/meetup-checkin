@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<title>Meetup Check-in</title> 
+<meta charset="utf-8"> 
+<meta name = "viewport" content="width=device-width, maximum-scale=1"> <!-- Kills text zoom in iOS. Media Queries manage font sizes -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/screen.css') }}">
+<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='jgrowl/jquery.jgrowl.min.css') }}">
+</head> 
+<body>
+
+  <ul id="appleNav">
+    <li>
+        Filter: <input type="text" id="filter"/>
+      </li>
+      <li>
+        <label for="show_absent"><input id="show_absent" name="show" type="radio" value="absent" >Absent Only</input></label>
+        <label for="show_all"><input id="show_all" name="show" type="radio" value="all">All</input></label>
+      </li>
+      <li id="stats">{{ present }}/{{ total }} Present</li>
+  </ul>
+
+{% for rsvp in rsvps %}
+<a id="rsvp_{{ rsvp.id }}" href="#" class="title present_{{ rsvp.present }}"> 
+  <div class="screen">
+    <p><span id="name_{{ rsvp.id }}" class="name">{{ rsvp.name }}</span>
+      {# lower case version of name for case insensitive searching #}
+      <span class="lowername" style="display:none;">{{ rsvp.name|lower }}</span> <br>
+    {% if rsvp.thumb %}
+    <img src="{{ rsvp.thumb }}" height="100">
+    {% else %}
+    <img src="{{ url_for('static', filename='profile.jpg') }}" height="110">
+    {% endif %}
+    <br>
+      Present: 
+      <label for="yes_{{ rsvp.id }}">
+        <input type="radio" name="present_{{ rsvp.id }}" id="yes_{{ rsvp.id }}" value="1_{{ rsvp.id }}"
+               {% if rsvp.present == 1 %}checked{% endif %}>
+        Yes</label>
+      
+      <label for="no_{{ rsvp.id }}">
+        <input type="radio" name="present_{{ rsvp.id }}" id="no_{{ rsvp.id }}" value="0_{{ rsvp.id }}"
+               {% if rsvp.present != 1 %}checked{% endif %}>
+        No</label>
+      
+    </p>
+  </div> 
+</a> 
+{% endfor %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='jgrowl/jquery.jgrowl.min.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body> 
+</html>

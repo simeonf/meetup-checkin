@@ -1,0 +1,53 @@
+/* APPLE STYLE NAVIGATION MENU */
+#appleNav {
+    position: absolute;
+    display:block;
+    top:10px;
+    margin-left:auto;
+    margin-right:auto;
+    margin:0px;
+    list-style:none;
+    padding:0px;
+ 
+    /* Lucinda Grande is the font used on the website from Apple. */
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, Helvetica, sans-serif; letter-spacing:-0.5px; font-size:13px;
+    letter-spacing: .3px;
+    /* Apply a subtle text-shadow to the text */
+    text-shadow: 0 -1px 3px #CCCCCC;
+    width:650px; height:34px;
+    border-radius:4px;
+    box-shadow: 0 3px 4px #8b8b8b;
+    background: linear-gradient(to bottom, rgba(254,255,255,1) 0%,rgba(221,241,249,1) 35%,rgba(160,216,239,1) 100%);
+}
+ 
+#appleNav li {
+    display:block; float:left;
+    border-right:1px solid #5d5d5d;
+    border-left:1px solid #929292;
+    height:26px;
+    line-height:25px;
+    border-bottom:1px solid #575757;
+    border-top:1px solid #797979;
+    color:#222;padding:4px 20px;
+    width: 175px;
+}
+ 
+/* Styling of the search field */
+#appleNav input[type=text] {
+    width:76px; height:20px; margin-left:9px; margin-top:2px; border:none; padding-left:20px; padding-right:10px; color:#eee;
+    border-radius:10px;
+    background-color:#6E6E6E; /* Fallback */
+    box-shadow: inset 0 2px 1px 1px #363636;
+}
+ 
+
+#appleNav li:first-child {
+    border-radius:4px 0 0 4px;
+    border-left:none;
+}
+ 
+ 
+#appleNav li:last-child {
+    border-radius:0 4px 4px 0;
+    border-right:none;
+}
