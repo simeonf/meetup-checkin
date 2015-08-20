@@ -37,7 +37,7 @@ def close_connection(exception):
         
 @app.route('/')
 def index():
-    rsvps = query_db("SELECT * from rsvp where rsvp=? order by name ", ('yes',))
+    rsvps = query_db("SELECT * from rsvp where rsvp=? or rsvp=? order by name ", ('yes', 'waitlist'))
     present = query_db("SELECT count(*) as num from rsvp where present=?", (1,), True)['num']
     absent = query_db("SELECT count(*) as num from rsvp where present<>?", (1,), True)['num']
     total = present + absent
