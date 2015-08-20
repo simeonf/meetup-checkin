@@ -48,7 +48,6 @@ def rsvps(event_id):
     r = requests.get(next, params=params)
     data = json.loads(r.text)
     for page_i, record in enumerate(data['results']):
-      open("json/%s" % record['rsvp_id'], "w").write(json.dumps(record))
       records.append(record)
     i += page_i + 1
     meta = data['meta']
