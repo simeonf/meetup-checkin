@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
@@ -24,7 +25,9 @@
 {% for rsvp in rsvps %}
 <a id="rsvp_{{ rsvp.id }}" href="#" class="title present_{{ rsvp.present }}"> 
   <div class="screen">
-    <p><span id="name_{{ rsvp.id }}" class="name">{{ rsvp.name }}</span>
+    <p><span id="name_{{ rsvp.id }}" class="name">{{ rsvp.name }}
+        {% if rsvp.rsvp == 'waitlist' %} (waitlist) {% endif %}
+      </span>
       {# lower case version of name for case insensitive searching #}
       <span class="lowername" style="display:none;">{{ rsvp.name|lower }}</span> <br>
     {% if rsvp.thumb %}
