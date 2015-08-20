@@ -13,7 +13,7 @@ $(function(){
       $(".present_1").show();
   });
   $filter = $("#filter");
-  $filter.bind('keyup', function(){
+  var filter_func = function(){
       var val = $filter.val();
       var all = $("#show_all").prop('checked');
       if(val.length > 0){
@@ -27,12 +27,14 @@ $(function(){
       }else{
           $("a.title").show();
           hide();
-      }
-  });
+      };
+  };
+  $filter.bind('keyup', filter_func);
   // attach event to each member radio button
   $("a.title :radio").change(function(){
      // clear our the text input control
      $filter.val("");
+     filter_func();
      var data = $(this).val().split('_');
      var value = data[0]; // value: 1 or 0 for yes or no
      var id = data[1]; // id - the db key
@@ -42,6 +44,7 @@ $(function(){
      $.post("/ajax", {'id': id, 'present': value}, function(){
              $("#stats").load('/ajax/stats');
          });
+     $filter.focus();
   });
   // globally handle ajax failure
   $(document).ajaxError(function(){
